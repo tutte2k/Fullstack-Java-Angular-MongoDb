@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { VideoService } from '../services/video.service';
 import { UserService } from '../services/user.service';
-import { of } from 'rxjs';
+
 
 
 
@@ -14,10 +14,13 @@ import { of } from 'rxjs';
 })
 export class VideoDetailComponent implements OnDestroy, OnInit {
   subscribeToUserObservable: Subscription = new Subscription;
-  showSubscribeButton: boolean = true;
+  showSubscribeButton: boolean = false;
   showUnSubscribeButton: boolean = false;
   videoUrl!: string;
   videoUrlAvailable = false;
+
+  userId!:string|null;
+  isSubscribed:boolean = false;
 
   videoId!: string | '';
   videoName!: string | '';
@@ -36,6 +39,7 @@ export class VideoDetailComponent implements OnDestroy, OnInit {
   constructor(private route: ActivatedRoute, private userService: UserService,
     private videoService: VideoService) {
     this.videoId = this.route.snapshot.params['videoId'];
+    this.userId = localStorage.getItem('userId');
   }
 
   ngOnInit(): void {
@@ -50,17 +54,19 @@ export class VideoDetailComponent implements OnDestroy, OnInit {
       this.date = data.date;
       this.videoDescription = data.description;
       this.tags = data.tags;
-
-
       this.userService.getUserProfile(this.videoOwnerId).subscribe(data => {
         this.videoOwnerName = data.fullName;
         this.videoOwnerPicUrl = data.pictureUrl;
         this.videoOwnerSubscibersCount = Array.from(data.subscribers).length;
+        if(this.userId != null){
+          this.userService.getUserProfile(this.userId).subscribe(data=>{
+            this.isSubscribed = Array.from(data.subscriptions).includes(this.videoOwnerId);
+          })
+        }
       })
     })
+    
   }
-
-
   subscribeToUser() {
     this.subscribeToUserObservable = this.userService.subscribeToUser(this.videoOwnerId)
       .subscribe(() => {

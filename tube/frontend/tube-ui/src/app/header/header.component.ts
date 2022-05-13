@@ -1,4 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
 
@@ -12,7 +13,6 @@ export class HeaderComponent implements OnInit{
   public isUserLoggedIn: boolean = false;
 
   constructor(private authService: AuthService) {
-    
   }
 
   ngOnInit(): void {
@@ -24,8 +24,6 @@ export class HeaderComponent implements OnInit{
 
   login() {
     this.authService.login();
-    
-
   }
 
   logout() {

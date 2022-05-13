@@ -22,12 +22,14 @@
         <div fxFlex="50%">
           <mat-card-header fxLayoutAlign="end">
             <img [src]="videoOwnerPicUrl" mat-card-avatar class="example-header-image" />
-            <mat-card-title routerLink="/channel/{{this.videoOwnerId}}"><button class="mat-button">{{videoOwnerName}}</button></mat-card-title>
+            <mat-card-title routerLink="/channel/{{this.videoOwnerId}}"><button
+                class="mat-button">{{videoOwnerName}}</button></mat-card-title>
             <mat-card-subtitle fxLayoutAlign="start" class="subtitles">{{videoOwnerSubscibersCount}} subscribers
             </mat-card-subtitle>
-            <button *ngIf="showSubscribeButton" class="subscribe-button" mat-raised-button color="warn"
-              (click)="subscribeToUser()">SUBSCRIBE</button>
-            <button *ngIf="showUnSubscribeButton" class="subscribe-button-clicked" mat-raised-button color="accent">
+            <button *ngIf="!isSubscribed" class="subscribe-button" mat-raised-button color="warn"(click)="subscribeToUser()">
+              SUBSCRIBE
+            </button>
+            <button *ngIf="isSubscribed" class="subscribe-button-clicked" mat-raised-button color="accent">
               SUBSCRIBED
             </button>
           </mat-card-header>
