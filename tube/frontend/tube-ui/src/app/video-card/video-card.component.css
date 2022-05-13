@@ -1,0 +1,15 @@
+.example-card {
+  max-width: 400px;
+}
+
+.example-header-image {
+  background-size: cover;
+}
+.subtitles{
+  justify-content: space-between;
+}
+
+mat-card[ng-reflect-router-link] {
+  cursor: pointer;
+}
+

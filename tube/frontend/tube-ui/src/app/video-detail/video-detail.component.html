@@ -1,0 +1,47 @@
+<div fxLayout="row">
+  <div fxFlex="65%" class="video-detail">
+    <div fxLayout="column" fxLayoutGap="8px">
+      <app-video-player *ngIf="videoUrlAvailable" [videoUrl]="videoUrl"></app-video-player>
+      <div fxLayout="row">
+        <div fxFlex="50%">
+          <div class="mat-title">{{videoName}}</div>
+          <span class="view-count">{{viewCount}} views</span>
+          <span class="dot"></span>
+          <span class="video-upload-date">Uploaded {{date}}</span>
+          <div class="like-dislike-section">
+            <button mat-icon-button class="thumbs-up" (click)="likeVideo()">
+              <mat-icon>thumb_up_off_alt</mat-icon>
+              {{likeCount}}
+            </button>
+            <button mat-icon-button class="thumbs-down" (click)="dislikeVideo()">
+              <mat-icon>thumb_down_off_alt</mat-icon>
+              {{dislikeCount}}
+            </button>
+          </div>
+        </div>
+        <div fxFlex="50%">
+          <mat-card-header fxLayoutAlign="end">
+            <img [src]="videoOwnerPicUrl" mat-card-avatar class="example-header-image" />
+            <mat-card-title routerLink="/channel/{{this.videoOwnerId}}"><button class="mat-button">{{videoOwnerName}}</button></mat-card-title>
+            <mat-card-subtitle fxLayoutAlign="start" class="subtitles">{{videoOwnerSubscibersCount}} subscribers
+            </mat-card-subtitle>
+            <button *ngIf="showSubscribeButton" class="subscribe-button" mat-raised-button color="warn"
+              (click)="subscribeToUser()">SUBSCRIBE</button>
+            <button *ngIf="showUnSubscribeButton" class="subscribe-button-clicked" mat-raised-button color="accent">
+              SUBSCRIBED
+            </button>
+          </mat-card-header>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <app-video-description [videoDescription]="videoDescription"></app-video-description>
+      <app-video-tag-list [tags]="tags"></app-video-tag-list>
+      <mat-divider></mat-divider>
+      <app-comments [videoId]="videoId"></app-comments>
+    </div>
+  </div>
+  <div fxFlex="5%"></div>
+  <div fxFlex="30%" class="suggestion-bar">
+    <app-suggestion-bar (click)="reload()"></app-suggestion-bar>
+  </div>
+</div>

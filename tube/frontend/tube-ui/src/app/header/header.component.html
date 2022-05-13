@@ -1,0 +1,22 @@
+<mat-toolbar color="primary">
+  <a routerLink="" class="logo">tube</a>
+  <span class="example-spacer">
+  </span>
+  <div *ngIf="isUserLoggedIn">
+    <a routerLink="/upload-video" mat-icon-button>
+      <mat-icon>video_call</mat-icon>
+    </a>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+ 
+      <button mat-menu-item routerLink="/channel">My Channel</button>
+      <button mat-menu-item (click)="logout()">Log Out</button>
+    </mat-menu>
+  </div>
+  <button *ngIf="!isUserLoggedIn" (click)="login()">Login</button>
+</mat-toolbar>
+
+
+
