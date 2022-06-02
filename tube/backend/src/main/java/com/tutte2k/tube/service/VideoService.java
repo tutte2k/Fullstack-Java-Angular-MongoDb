@@ -87,7 +87,7 @@ public class VideoService {
 
     public void deleteVideo(String id) {
         String videoUrl = getVideo(id).getUrl();
-        s3Service.deleteFile(videoUrl);
+        videoRepository.deleteById(id);
     }
 
     public List<VideoDto> getSuggestedVideos(String userId) {

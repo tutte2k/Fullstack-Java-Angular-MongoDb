@@ -27,5 +27,9 @@ export class ChannelComponent implements OnInit {
       })
     }
   }
+  delete(videoId:string){
+    this.videoService.deleteVideo(videoId)
+  }
+
 
 }

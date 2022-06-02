@@ -2,6 +2,7 @@
     <div fxLayout="row wrap" fxLayoutGap="16px grid">
       <div *ngFor="let video of videos">
         <app-video-card [video]="video"></app-video-card>
+        <button (click)="delete(video.videoId)"></button>
       </div>
     </div>
   </div>

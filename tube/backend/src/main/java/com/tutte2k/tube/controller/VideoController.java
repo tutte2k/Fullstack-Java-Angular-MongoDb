@@ -58,9 +58,10 @@ public class VideoController {
         return videoService.getAllVideos();
     }
 
-    @DeleteMapping("{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("{id}/delete")
+    @ResponseStatus(HttpStatus.OK)
     public void deleteVideo(@PathVariable String id) {
+        System.out.println("ASd");
         videoService.deleteVideo(id);
     }
 

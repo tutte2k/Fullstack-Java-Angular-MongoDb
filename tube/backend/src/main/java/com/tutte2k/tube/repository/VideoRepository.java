@@ -11,4 +11,7 @@ public interface VideoRepository extends MongoRepository<Video, String> {
     List<Video> findByTagsIn(List<String> tags);
 
     List<Video> findByIdIn(Set<String> likedVideos);
+
+    @Override
+    void deleteById(String s);
 }

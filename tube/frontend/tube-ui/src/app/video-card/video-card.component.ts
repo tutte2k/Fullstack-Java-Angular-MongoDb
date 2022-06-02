@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
+import { VideoService } from '../services/video.service';
 import { VideoDto } from '../VideoDto';
 
 @Component({
@@ -17,7 +18,7 @@ export class VideoCardComponent implements OnInit {
   videoOwnerName!: string | '';
   videoOwnerPicUrl!: string | '';
 
-  constructor(private userService:UserService) { 
+  constructor(private userService:UserService,private videoService:VideoService) { 
 
   }
 
@@ -27,6 +28,7 @@ export class VideoCardComponent implements OnInit {
       this.videoOwnerPicUrl = data.pictureUrl;
     })
   }
+
 
 
 }

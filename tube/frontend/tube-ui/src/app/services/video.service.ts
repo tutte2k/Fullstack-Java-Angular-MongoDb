@@ -85,5 +85,10 @@ export class VideoService {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('access_token'))
     });
   }
-  
+
+  public deleteVideo(videoId: string) {
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('access_token'))
+    this.httpClient.delete("http://localhost:8081/api/video/" + videoId + "/delete", { headers })
+        .subscribe();
+  }
 }
